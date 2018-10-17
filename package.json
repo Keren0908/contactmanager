@@ -7,7 +7,8 @@
     "nodemon": "^1.18.4",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-scripts": "2.0.5"
+    "react-scripts": "2.0.5",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
