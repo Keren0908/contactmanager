@@ -23,7 +23,7 @@ class AddContact extends Component {
           email: this.emailInput.current.value,
           phone: this.phoneInput.current.value
       }
-      console.log(contact);
+      
 
   }
 
