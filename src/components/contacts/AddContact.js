@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Consumer } from "../../context";
 import uuid from "uuid";
 import TextInputGroup from "../layout/TextInputGroup";
+import axios from "axios";
 
 class AddContact extends Component {
   state = {
@@ -21,31 +22,35 @@ class AddContact extends Component {
     const { name, email, phone } = this.state;
 
     //check for errors
-    if(name === ""){
-      this.setState({ errors: { name: 'Name is required'} 
+    if (name === "") {
+      this.setState({
+        errors: { name: "Name is required" }
       });
       return;
     }
-    if(email === ""){
-      this.setState({ errors: { email: 'Email is required'} 
+    if (email === "") {
+      this.setState({
+        errors: { email: "Email is required" }
       });
       return;
     }
-    if(phone === ""){
-      this.setState({ errors: { phone: 'Phone is required'} 
+    if (phone === "") {
+      this.setState({
+        errors: { phone: "Phone is required" }
       });
       return;
     }
-    
 
     const newContact = {
-      id: uuid(),
       name,
       email,
       phone
     };
-    
-    dispatch({ type: "ADD_CONTACT", payload: newContact });
+
+    axios
+      .post("https://jsonplaceholder.typicode.com/users",newContact)
+      .then(res => dispatch({ type: "ADD_CONTACT", payload: res.data }));
+
     this.setState({
       name: "",
       email: "",
@@ -53,7 +58,7 @@ class AddContact extends Component {
       errors: {}
     });
 
-    this.props.history.push('/');
+    this.props.history.push("/");
   };
 
   render() {
